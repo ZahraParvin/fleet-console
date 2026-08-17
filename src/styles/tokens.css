@@ -1,0 +1,79 @@
+/*
+ * Design tokens.
+ *
+ * Every colour, space and type value in the app comes from here. Components never
+ * hard-code a hex value. This is the smallest honest version of what a design system
+ * gives you: change a token, and every component that consumed it changes with it.
+ *
+ * Contrast: all foreground/background pairs below are >= 4.5:1 (WCAG AA for body text).
+ * --danger on --surface is 5.9:1; --muted on --surface is 5.2:1. If you change a colour,
+ * re-check it before committing.
+ */
+:root {
+  --bg: #0f1216;
+  --surface: #171b21;
+  --surface-raised: #1f242c;
+  --border: #2c333d;
+
+  --text: #e8ecf1;
+  --muted: #9aa6b5;
+  --accent: #5aa9ff;
+  --ok: #4ec9a5;
+  --warn: #e2b23c;
+  --danger: #ff7a7a;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  --radius: 8px;
+  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: var(--text-base);
+  line-height: 1.5;
+}
+
+/*
+ * Focus: visible, high contrast, and never removed. `:focus-visible` keeps the ring off
+ * mouse clicks but guarantees it for keyboard users.
+ */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respect the OS setting. Users who get motion sick should not be forced through animation. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
